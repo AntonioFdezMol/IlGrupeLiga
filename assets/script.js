@@ -40,7 +40,7 @@ if (document.getElementById('login-form')) {
 
 // Handle home page functionality
 if (document.getElementById('card-container')) {
-    const volumeIcon = document.getElementById('volume-icon');
+
     const saveButton = document.getElementById('saveButton');
     const loadingOverlay = document.getElementById('loadingOverlay');
     const cardContainer = document.getElementById('card-container');
@@ -49,12 +49,6 @@ if (document.getElementById('card-container')) {
 
     // Initialize
     loadPronosticos();
-
-    // Handle click on volume button
-    document.getElementById('volume-toggle').addEventListener('click', () => {
-        isMuted = !isMuted;
-        volumeIcon.src = isMuted ? 'assets/images/silencio.png' : 'assets/images/sonido.png';
-    });
 
     // Load pronósticos
     async function loadPronosticos() {
