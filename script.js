@@ -15,16 +15,15 @@ firebase.initializeApp(firebaseConfig);
 document.getElementById('login-form').addEventListener('submit', function(event) {
     event.preventDefault();
     
-    const email = document.getElementById('email').value;
+    let email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
 
-    // Basic email format validation (not strictly required)
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        document.getElementById('error-message').textContent = 'Please enter a valid email address.';
-        return;
+    // Add "@midominio.com" to the email if it doesn't already include "@".
+    if (!email.includes('@')) {
+        email += '@midominio.com';
     }
 
+    // Attempt to sign in with the email and password
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
             // Successful login
