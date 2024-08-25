@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-
     <div class="login-container">
         <h2>Login</h2>
         <form id="login-form">
@@ -18,9 +17,43 @@
         <p id="error-message"></p>
     </div>
 
-    <!-- Import Firebase and authentication libraries -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
-    <script src="assets/script.js"></script>
+    <!-- Import Firebase libraries using the correct CDN for modular approach -->
+    <script type="module">
+      // Import Firebase configuration and libraries
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+      import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+
+      // Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCkwC7X34uMn1zgXUzosQql4UFDmDM_AbE",
+        authDomain: "ilgrupeliga.firebaseapp.com",
+        projectId: "ilgrupeliga",
+        storageBucket: "ilgrupeliga.appspot.com",
+        messagingSenderId: "727676932830",
+        appId: "1:727676932830:android:d6eee6f570037dd774684f"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      // Handle login form submission
+      document.getElementById('login-form').addEventListener('submit', async function(event) {
+          event.preventDefault();
+          
+          const email = document.getElementById('email').value + '@midominio.com';
+          const password = document.getElementById('password').value;
+
+          try {
+              const userCredential = await signInWithEmailAndPassword(auth, email, password);
+              // Successful login
+              window.location.href = 'home.html';  // Redirect to another page
+          } catch (error) {
+              // Handle errors
+              const errorMessage = error.message;
+              document.getElementById('error-message').textContent = errorMessage;
+          }
+      });
+    </script>
 </body>
 </html>
