@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Mis partidos</h1>
+        <button id="volume-toggle">
+            <img src="assets/images/sonido.png" alt="Volume" id="volume-icon">
+        </button>
+    </header>
+    
+    <main>
+        <div id="loadingOverlay" class="hidden">
+            <div id="progressBar">Cargando...</div>
+        </div>
+        <div id="content">
+            <div id="card-container"></div>
+            <button id="saveButton" class="hidden">Guardar</button>
+        </div>
+    </main>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
