@@ -68,6 +68,19 @@
           if (!querySnapshot.empty) {
               // Handle successful authentication
               const doc = querySnapshot.docs[0].data();
+
+            // Establecer el usuario en el almacenamiento local
+            establecerUsuario(userData);
+              
+            // Establece la competición en el almacenamiento local
+            establecerCompeticion();
+
+              // Recuperar el nombre del usuario de localStorage
+            const usuario = JSON.parse(localStorage.getItem('usuario'));
+
+            // Mostrar alerta de login correcto con el nombre del usuario
+            alert(`Login correcto. Bienvenido, ${usuario.NAME}!`);
+              
               // Do something with user data (e.g., store it globally, etc.)
               console.log('User authenticated:', doc);
               
@@ -77,6 +90,30 @@
               throw new Error('Credenciales incorrectas');
           }
       }
+
+    function establecerUsuario(userDoc) {
+        // Crear un objeto de usuario basado en la estructura de Usuario
+        const usuario = {
+            NAME: userDoc.NAME,
+            PERFIL: userDoc.PERFIL,
+            UUID: userDoc.UUID
+            // No guardamos la contraseña en localStorage por seguridad
+        };
+        
+        // Guardar el objeto de usuario en localStorage
+        localStorage.setItem('usuario', JSON.stringify(usuario));
+    }
+
+     function establecerCompeticion() {
+        const competicion = {
+            id: "FzgqkrrdJ0bmYXwX0Bpg",
+            codigo: "LIGA24",
+            nombre: "Liga 2024",
+            fecha: "2024-07-14"  // Fecha en formato ISO
+        };
+        // Guardar la competición en localStorage
+        localStorage.setItem('competicion', JSON.stringify(competicion));
+    }
     </script>
 </body>
 </html>
