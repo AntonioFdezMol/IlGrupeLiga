@@ -1,7 +1,22 @@
+// Importar Firebase y Firestore
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
 import { getFirestore, collection, query, where, getDocs, Timestamp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
 
+// Configuración de Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyCkwC7X34uMn1zgXUzosQql4UFDmDM_AbE",
+    authDomain: "ilgrupeliga.firebaseapp.com",
+    projectId: "ilgrupeliga",
+    storageBucket: "ilgrupeliga.appspot.com",
+    messagingSenderId: "727676932830",
+    appId: "1:727676932830:android:d6eee6f570037dd774684f"
+};
+
+// Inicializar Firebase
+const app = initializeApp(firebaseConfig);
+
 // Inicializar Firestore
-const db = getFirestore();
+const db = getFirestore(app);
 
 async function recuperarPronosticosYMontarTarjetas() {
     try {
@@ -56,7 +71,7 @@ async function recuperarPronosticosYMontarTarjetas() {
     }
 }
 
-// Función ficticia para ocultar el spinner de carga (debes definirla según tu implementación)
+// Función para ocultar el spinner de carga
 function hideLoading() {
     document.getElementById('loadingOverlay').classList.add('hidden');
 }
