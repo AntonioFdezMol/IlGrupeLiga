@@ -43,6 +43,9 @@ async function recuperarPronosticosYMontarTarjetas() {
         // Hacer una copia de la lista de pronósticos
         const pronosticosOrigenList = pronosticoList ? JSON.parse(JSON.stringify(pronosticoList)) : [];
 
+        // Mostrar alerta
+        alert(`Se han recuperado ${plantillaPartidoList.length} plantillas y ${pronosticoList.length} pronósticos.`);
+        
         // Llamar a la función que procesará ambos conjuntos de datos
         // onAllDataLoaded();
 
@@ -55,5 +58,10 @@ async function recuperarPronosticosYMontarTarjetas() {
 
 // Función ficticia para ocultar el spinner de carga (debes definirla según tu implementación)
 function hideLoading() {
-    // Implementa la lógica para ocultar el spinner de carga
+    document.getElementById('loadingOverlay').classList.add('hidden');
 }
+
+// Ejecutar la función cuando el DOM esté completamente cargado
+document.addEventListener('DOMContentLoaded', () => {
+    recuperarPronosticosYMontarTarjetas();
+});
